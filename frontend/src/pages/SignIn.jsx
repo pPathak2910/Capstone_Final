@@ -59,13 +59,9 @@ const SignIn = () => {
   useEffect(() => {
     setErrMsg("");
     if (localStorage.getItem("token")) {
-      const role = localStorage.getItem("role");
-      console.log(role);
-      if (role) {
-        navigate("/assignments");
-      } else {
-        navigate("/candidate");
-      }
+      navigate("/home");
+    } else {
+      navigate("/");
     }
   }, []);
 
