@@ -1,0 +1,19 @@
+.HomeCard {
+  background-color: lightblue;
+}
+.pageHeader {
+  display: "flex";
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  /* background: #000; */
+}
+.cardHeading {
+  font-size: xx-large;
+}
+.cardContent {
+  font-size: large;
+}
+.cardEmail {
+  font-size: small;
+}

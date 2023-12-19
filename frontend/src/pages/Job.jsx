@@ -50,7 +50,7 @@ export default function Album() {
   };
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <>
       <CssBaseline />
       <AppBar position="relative"></AppBar>
 
@@ -102,6 +102,6 @@ export default function Album() {
           </Container>
         </Box>
       </main>
-    </ThemeProvider>
+    </>
   );
 }
