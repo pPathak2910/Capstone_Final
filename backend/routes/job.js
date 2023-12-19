@@ -64,4 +64,17 @@ router.route("/create").post(upload.single("file"), async (req, res, next) => {
   }
 });
 
+router.route("/close").post(async (req, res) => {
+  // console.log(req.body);
+  try {
+    const jobId = req.body._id;
+    let job = await Job.findOne({ _id: jobId });
+    // compact.log(job);
+    await Job.updateOne({ _id: jobId }, { status: "closed" });
+    return res.status(200).send("Job Closed");
+  } catch (err) {
+    return res.status(400).send(err.message);
+  }
+});
+
 module.exports = router;

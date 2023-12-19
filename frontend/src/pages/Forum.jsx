@@ -54,11 +54,18 @@ export default function Album() {
           }}
         >
           <Container maxWidth="md">
-            {/* End hero unit */}
+            <Grid container spacing={2}>
+              <Grid item xs={6} md={8}>
+                <Typography variant="h3"> Discussion Forum</Typography>
+              </Grid>
+              <Grid item xs={6} md={4}>
+                <Box sx={{ margin: "0 auto" }}>
+                  <ForumDialog />
+                </Box>
+              </Grid>
+            </Grid>
+            <br />
             <Grid container spacing={1}>
-              <Box sx={{ margin: "0 auto" }}>
-                <ForumDialog />
-              </Box>
               {cards &&
                 cards.map((card, idx) => (
                   <Grid item key={idx} xs={12} sm={12} md={12}>
@@ -69,7 +76,9 @@ export default function Album() {
                         flexDirection: "column",
                       }}
                     >
-                      <CardContent sx={{ flexGrow: 1 }}>
+                      <CardContent
+                        sx={{ flexGrow: 1, backgroundColor: "#dcdcdc" }}
+                      >
                         <Typography gutterBottom variant="h5" component="h2">
                           {card.heading}
                         </Typography>

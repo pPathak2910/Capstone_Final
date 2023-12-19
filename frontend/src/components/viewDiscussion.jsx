@@ -59,6 +59,11 @@ export default function FullScreenDialog({ card }) {
         <Typography variant="h3">{card.heading}</Typography>
         <br />
         <Typography variant="h5">{card.content}</Typography>
+        <br />
+        <br />
+        <Divider variant="fullWidth" />
+        <Typography variant="h4">Suggestions from Alumni :-</Typography>
+        <Divider variant="fullWidth" />
         <List>
           {card.comments.map((comment, idx) => {
             return (

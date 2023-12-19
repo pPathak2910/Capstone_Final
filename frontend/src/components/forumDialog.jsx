@@ -10,7 +10,6 @@ import { useState } from "react";
 import { Grid, Box, MenuItem } from "@mui/material";
 import axios from "axios";
 
-
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
   const [heading, setHeading] = useState("");
@@ -40,7 +39,7 @@ export default function FormDialog() {
   };
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         Ask a Question
       </Button>
       <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>

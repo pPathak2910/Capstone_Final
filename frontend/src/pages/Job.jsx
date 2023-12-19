@@ -21,6 +21,9 @@ import axios from "axios";
 import FormDialog from "../components/dialog";
 import JobDialog from "../components/jobDialog";
 import FullScreenDialog from "../components/fullScreenDialog";
+import "./Jobs.css";
+import MultiActionAreaCard from "../components/jobCard";
+import JobCard from "../components/jobCard";
 
 const defaultTheme = createTheme();
 
@@ -62,40 +65,22 @@ export default function Album() {
           }}
         >
           <Container maxWidth="md">
-            {/* End hero unit */}
+            <Grid container spacing={2}>
+              <Grid item xs={6} md={8}>
+                <Typography variant="h3"> Job Openings</Typography>
+              </Grid>
+              <Grid item xs={6} md={4}>
+                <Box sx={{ margin: "0 auto" }}>
+                  {role === "teacher" && <JobDialog />}
+                </Box>
+              </Grid>
+            </Grid>
+            <br />
             <Grid container spacing={1}>
-              <Box sx={{ margin: "0 auto" }}>
-                {role === "teacher" && <JobDialog />}
-              </Box>
               {cards &&
                 cards.map((card, idx) => (
-                  <Grid item key={idx} xs={12} sm={12} md={12}>
-                    <Card
-                      sx={{
-                        height: "100%",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <CardContent sx={{ flexGrow: 1 }}>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Company &nbsp;:&nbsp;{card.company}
-                        </Typography>
-                        <br />
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Profile &nbsp;:&nbsp;{card.profile}
-                        </Typography>
-                        <br />
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Role &nbsp;:&nbsp;{card.type}
-                        </Typography>
-                        <br />
-                        <Typography gutterBottom variant="h5" component="h2">
-                          Location &nbsp;:&nbsp;{card.location}
-                        </Typography>
-                        <FullScreenDialog card={card} />
-                      </CardContent>
-                    </Card>
+                  <Grid item key={idx} xs={6} sm={6} md={6}>
+                    <JobCard card={card} />
                   </Grid>
                 ))}
             </Grid>

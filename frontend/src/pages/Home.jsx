@@ -63,10 +63,6 @@ export default function Album() {
           }}
         >
           <Container maxWidth="md">
-            {/* <Box className="pageHeader">
-              <Typography variant="h3"> Announcements</Typography>
-              <Box>{role === "teacher" && <FormDialog />}</Box>
-            </Box> */}
             <Grid container spacing={2}>
               <Grid item xs={6} md={8}>
                 <Typography variant="h3"> Announcements</Typography>

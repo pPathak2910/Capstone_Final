@@ -47,5 +47,5 @@ router.route("/comment").post(async (req, res) => {
   }
 });
 
-router.route("/").patch(async (req, res) => {});
+
 module.exports = router;

@@ -1,6 +1,7 @@
 const router = require("express").Router();
 let User = require("../models/user.model");
 let jwt = require("jsonwebtoken");
+let bcrypt = require("bcrypt");
 
 router.route("/").get((req, res, next) => {
   //   User.find()
@@ -18,6 +19,7 @@ router.route("/signup").post(async (req, res, next) => {
   const universityId = req.body.universityId ? req.body.universityId : "";
   const role = req.body.role;
   const password = req.body.password;
+  const hashedPassword = await bcrypt.hash(password, 12);
   const cgpa = req.body.cgpa ? req.body.cgpa : -1;
   const placed = req.body.placed ? req.body.placed : "faculty";
   // console.log("Here");
@@ -39,7 +41,7 @@ router.route("/signup").post(async (req, res, next) => {
         placed,
         role,
         universityId,
-        password,
+        password: hashedPassword,
       });
       console.log(newUser);
       await newUser.save();
@@ -62,8 +64,14 @@ router.route("/signin").post(async (req, res, next) => {
 
   console.log(email, password);
   try {
-    const user = await User.findOne({ email, password });
+    const user = await User.findOne({ email });
     if (user !== null) {
+      const isPasswordCorrect = await bcrypt.compare(password, user.password);
+      if (!isPasswordCorrect) {
+        return res
+          .status(400)
+          .send("No account found with the given credentials.");
+      }
       const { fullName, universityId, role } = user;
       const token = jwt.sign(
         { email, fullName, universityId, role, password },

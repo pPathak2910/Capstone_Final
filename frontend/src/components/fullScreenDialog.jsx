@@ -43,6 +43,14 @@ export default function FullScreenDialog({ card }) {
     setOpen(false);
   };
 
+  const handleCloseJob = async (_id) => {
+    try {
+      await axios.post("http://localhost:5000/job/close", { _id });
+      window.location.reload();
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   return (
     <React.Fragment>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -67,9 +75,29 @@ export default function FullScreenDialog({ card }) {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               Job Details
             </Typography>
-            <Button autoFocus color="inherit" onClick={handleClose}>
-              Apply
-            </Button>
+            {localStorage.getItem("role") === "teacher" ? (
+              card.status === "open" ? (
+                <Button
+                  autoFocus
+                  color="inherit"
+                  onClick={() => handleCloseJob(card._id)}
+                >
+                  Close
+                </Button>
+              ) : (
+                <Button autoFocus color="inherit" disabled="true">
+                  Job Closed
+                </Button>
+              )
+            ) : card.status === "open" ? (
+              <Button autoFocus color="inherit" onClick={handleClose}>
+                Apply
+              </Button>
+            ) : (
+              <Button autoFocus color="inherit" disabled="true">
+                Job Closed
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
         <CardContent sx={{ flexGrow: 1 }}>

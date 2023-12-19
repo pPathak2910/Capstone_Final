@@ -73,7 +73,7 @@ export default function JobDialog() {
   };
   return (
     <React.Fragment>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="contained" onClick={handleClickOpen}>
         Create New Job
       </Button>
       <Dialog fullWidth maxWidth="md" open={open} onClose={handleClose}>
